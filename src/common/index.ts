@@ -1,5 +1,4 @@
 import getRoutes from "./getRoutes";
+import logger from "./logger";
 
-export default {
-  getRoutes,
-};
+export { getRoutes, logger };

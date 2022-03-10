@@ -1,18 +1,31 @@
 import dotenv from "dotenv";
 import express from "express";
+import pinoHttp from "pino-http";
 
-import getRoutes from "./common/getRoutes";
+import { getRoutes, logger } from "./common";
 import bootstrap from "./router";
 
 dotenv.config();
+const httpLogger = pinoHttp({
+  quietReqLogger: true,
+  genReqId: function (req) {
+    return req.id;
+  },
+  transport: {
+    target: "pino-pretty",
+    options: {
+      colorize: true,
+    },
+  },
+});
 
 const { PORT } = process.env;
 const app = express();
 
-bootstrap(app).then((): void => {
-  // app.get("/", (req, res) => res.send("woo"));
-  console.log(getRoutes(app).join("\n"));
+app.use(httpLogger);
 
+bootstrap(app).then((): void => {
+  logger.info("Loaded Routes\n" + getRoutes(app).join("\n"));
   app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}!`);
   });
