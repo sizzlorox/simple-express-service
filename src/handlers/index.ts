@@ -3,7 +3,7 @@ import * as fs from "fs/promises";
 
 import { IRouter, Router } from "express";
 
-export default async function loadIn(): Promise<{
+export default async function bootstrap(): Promise<{
   router: IRouter;
 }> {
   const r = Router({ mergeParams: true });

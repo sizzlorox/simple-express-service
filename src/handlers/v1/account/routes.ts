@@ -6,7 +6,7 @@ import AccountService from "./service";
 const service = new AccountService();
 const controller = new AccountController(service);
 
-export default function loadIn(): {
+export default function bootstrap(): {
   router: IRouter;
   prefix: string;
 } {

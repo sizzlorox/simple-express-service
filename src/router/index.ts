@@ -3,7 +3,7 @@ import * as fs from "fs/promises";
 
 import { Application } from "express";
 
-export default async function loadIn(app: Application): Promise<void> {
+export default async function bootstrap(app: Application): Promise<void> {
   const normalizedPath = path.join(__dirname, "../handlers");
   const files = await fs.readdir(normalizedPath);
   for (const file of files) {
