@@ -30,7 +30,7 @@ function split(thing: any): string {
   } else if (thing.fast_slash) {
     return "";
   } else {
-    var match = thing
+    let match = thing
       .toString()
       .replace("\\/?", "")
       .replace("(?=\\/|$)", "$")
