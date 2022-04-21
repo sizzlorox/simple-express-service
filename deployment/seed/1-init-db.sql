@@ -1,0 +1,2 @@
+-- Init
+CREATE SCHEMA "service";
